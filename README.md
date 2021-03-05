@@ -36,7 +36,7 @@ perception of objects around the agent's forward direction.
 The agent is able to choose between 4 possible discrete actions:
 - **`0`** - move forward.
 - **`1`** - move backward.
-- **`2`** - turn left.M
+- **`2`** - turn left.
 - **`3`** - turn right.
 
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.
@@ -56,6 +56,8 @@ To launch training, you need to run the train script with the file path to Unity
 
 `python train.py <path_to_unity_env_here>`
 
+For example on Linux: `python train.py Banana_Linux/Banana.x86_64`
+
 You can customize the different options for training by modifying the variables at the top of file `train.py`.
 
 ### Rollout
@@ -63,5 +65,7 @@ You can customize the different options for training by modifying the variables 
 To launch rollout, you need to run the rollout script with the file path to Unity environment as argument:
 
 `python rollout.py <path_to_unity_env_here>`
+
+For example on Linux: `python rollout.py Banana_Linux/Banana.x86_64`
 
 You can customize the different options for rollout by modifying the variables at the top of file `rollout.py`.

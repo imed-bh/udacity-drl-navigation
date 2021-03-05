@@ -21,6 +21,5 @@ if __name__ == "__main__":
     env = BananaEnv(get_env_path())
     agent = RandomAgent(env) if AGENT == "random" else DQNAgent(env, DQNConfig())
     agent.restore("model.pt")
-    score = agent.run_episode()
-    print(f"Score {score}")
+    agent.run_episode()
     env.close()

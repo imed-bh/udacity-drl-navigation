@@ -26,4 +26,6 @@ class Agent(ABC):
             action = self.compute_action(state)
             state, reward, done = self.env.step(action)
             score += reward
+            if reward != 0 and not fast:
+                print(f"Score {score}")
         return score

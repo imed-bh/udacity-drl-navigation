@@ -53,16 +53,15 @@ class DQNAgent(Agent):
     def train(self, n_steps, update_every, print_every, epsilon_init=1.0, epsilon_decay=0.995, epsilon_min=0.01):
         epsilon = epsilon_init
         state = self._warmup(epsilon)
+        self.metrics.plot()
 
         for t_step in range(1, n_steps + 1):
             state = self._step(state, epsilon)
             epsilon = max(epsilon_min, epsilon * epsilon_decay)
+
             if t_step % update_every == 0:
                 self._batch_train()
-                if self.metrics.running_score() >= 13:
-                    print(f"\nEnvironment solved in {self.metrics.episode_count} episodes!\t" +
-                          f"Average Score: {self.metrics.running_score():.2f}'")
-                    torch.save(self.qnet_current.state_dict(), 'model.pt')
+                if self._check_solved():
                     break
 
             if t_step % print_every == 0:
@@ -103,3 +102,12 @@ class DQNAgent(Agent):
         self.optimizer.step()
 
         self.qnet_target.soft_update(self.qnet_current, self.config.tau)
+
+    def _check_solved(self):
+        if self.metrics.running_score() >= 13:
+            print(f"\nEnvironment solved in {self.metrics.episode_count} episodes!\t" +
+                  f"Average Score: {self.metrics.running_score():.2f}")
+            torch.save(self.qnet_current.state_dict(), "model.pt")
+            return True
+
+        return False
