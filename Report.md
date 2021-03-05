@@ -41,8 +41,9 @@ The agent was able to solve the environment in 356 episodes as shown in the foll
 
 ![dqn_training](dqn_training.png)
 
-You can also see a recorded video of the training at the root of this repository:
-`dqn_training_8x.mp4` (fast-forward 8x).
+You can also see a recorded video of the training on Youtube here:
+
+[Youtube Video](https://youtu.be/YsK8oyWvXtA) (fast-forward 8x).
 
 ### Ideas for improvement
 There are different improvements for DQN that we can explore like Dueling DQN or Prioritized Experience Replay. 
